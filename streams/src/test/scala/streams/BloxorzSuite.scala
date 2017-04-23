@@ -135,6 +135,15 @@ class BloxorzSuite extends FunSuite {
     }
   }
 
+  test("legalNeighbors function, level1") {
+    new Level1 {
+      val rightBlock = Block(Pos(1, 2), Pos(1, 3))
+      val downBlock = Block(Pos(2, 1), Pos(3, 1))
+      val legalNeighbors = List((rightBlock, Right), (downBlock, Down))
+      assert(startBlock.legalNeighbors == legalNeighbors, "level 1, startBlock legalNeighbors")
+    }
+  }
+
 
 
   test("optimal solution for level 1") {
