@@ -28,6 +28,10 @@ class BloxorzSuite extends FunSuite {
     }
   }
 
+  trait EmptyLevel extends SolutionChecker {
+    val level = ""
+  }
+
   trait Level1 extends SolutionChecker {
       /* terrain for level 1*/
 
@@ -40,6 +44,22 @@ class BloxorzSuite extends FunSuite {
       |------ooo-""".stripMargin
 
     val optsolution = List(Right, Right, Down, Right, Right, Right, Down)
+  }
+
+  test("terrain function empty level") {
+    val l  = new EmptyLevel {
+      assert(!terrain(Pos(0,0)), "empty 0,0")
+      assert(!terrain(Pos(1,1)), "empty 1,1")
+      assert(!terrain(Pos(4,7)), "empty 4,7")
+      assert(!terrain(Pos(5,8)), "empty 5,8")
+      assert(!terrain(Pos(5,9)), "empty 5,9")
+      assert(!terrain(Pos(4,9)), "empty 4,9")
+      assert(!terrain(Pos(6,8)), "empty 6,8")
+      assert(!terrain(Pos(4,11)), "empty 4,11")
+      assert(!terrain(Pos(-1,0)), "empty -1,0")
+      assert(!terrain(Pos(0,-1)), "empty 0,-1")
+    }
+    print (l.level)
   }
 
 
