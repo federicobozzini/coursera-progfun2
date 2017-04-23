@@ -34,6 +34,9 @@ trait GameDef {
 
     /** The position obtained by changing the `col` coordinate by `d` */
     def deltaCol(d: Int): Pos = copy(col = col + d)
+
+    def equals(pos: Pos) =
+      this.row == pos.row && this.col == pos.col
   }
 
   /**
@@ -143,7 +146,7 @@ trait GameDef {
     /**
      * Returns `true` if the block is standing.
      */
-    def isStanding: Boolean = ???
+    def isStanding: Boolean = b1 == b2
 
     /**
      * Returns `true` if the block is entirely inside the terrain.

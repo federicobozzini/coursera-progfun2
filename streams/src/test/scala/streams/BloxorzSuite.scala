@@ -78,6 +78,17 @@ class BloxorzSuite extends FunSuite {
     }
   }
 
+  test("is standing level 1") {
+    new Level1 {
+      val p0 = Pos(0, 0)
+      val p1 = Pos(0, 1)
+      val b0 = Block(p0, p0)
+      val b1 = Block(p0, p1)
+      assert(b0.isStanding, "0,0 - 0,0")
+      assert(!b1.isStanding, "0,0 - 0,1")
+    }
+  }
+
 	test("findChar level 1") {
     new Level1 {
       assert(startPos == Pos(1,1))
