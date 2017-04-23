@@ -215,6 +215,18 @@ class BloxorzSuite extends FunSuite {
     }
   }
 
+  test("pathFromStart for level 1") {
+    new Level1 {
+      assert(!pathsFromStart.isEmpty, "level 1, pathFromStart not empty")
+    }
+  }
+
+  test("pathsToGoal for level 1") {
+    new Level1 {
+      assert(!pathsToGoal.isEmpty, "level 1, pathsToGoal not empty")
+    }
+  }
+
 
 
   test("optimal solution for level 1") {
