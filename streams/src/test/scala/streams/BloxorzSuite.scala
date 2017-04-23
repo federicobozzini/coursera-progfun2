@@ -78,6 +78,12 @@ class BloxorzSuite extends FunSuite {
     }
   }
 
+  test("findChar level 1") {
+    new Level1 {
+      assert(startPos == Pos(1,1))
+    }
+  }
+
   test("block.isStanding function, level1") {
     new Level1 {
       val p0 = Pos(0, 0)
@@ -118,14 +124,20 @@ class BloxorzSuite extends FunSuite {
     }
   }
 
-	test("findChar level 1") {
+  test("neighbors function, level1") {
     new Level1 {
-      assert(startPos == Pos(1,1))
+      val leftBlock = Block(Pos(1, -1), Pos(1, 0))
+      val upBlock = Block(Pos(-1, 1), Pos(0, 1))
+      val rightBlock = Block(Pos(1, 2), Pos(1, 3))
+      val downBlock = Block(Pos(2, 1), Pos(3, 1))
+      val neighbors = List((leftBlock, Left), (upBlock, Up), (rightBlock, Right), (downBlock, Down))
+      assert(startBlock.neighbors == neighbors, "level 1, startBlock neighbors")
     }
   }
 
 
-	test("optimal solution for level 1") {
+
+  test("optimal solution for level 1") {
     new Level1 {
       assert(solve(solution) == Block(goal, goal))
     }
