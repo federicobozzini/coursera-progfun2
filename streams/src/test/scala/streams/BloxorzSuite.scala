@@ -145,6 +145,25 @@ class BloxorzSuite extends FunSuite {
     }
   }
 
+  test("done function, level1") {
+    new Level1 {
+      val p0 = Pos(0, 0)
+      val p1 = Pos(0, 1)
+      val p2 = Pos(4, 6)
+      val p3 = Pos(3, 7)
+      val b0 = Block(p0, p0)
+      val b1 = Block(p0, p1)
+      val b2 = Block(p2, goal)
+      val b3 = Block(p3, goal)
+      val b4 = Block(goal, goal)
+      assert(!done(b0), "level 1, random standing block")
+      assert(!done(b1), "level 1, random non-standing block")
+      assert(!done(b2), "level 1, block close to goal")
+      assert(!done(b3), "level 1, block close to goal 2")
+      assert(done(b4), "level 1, standing block on the goal")
+    }
+  }
+
 
 
   test("optimal solution for level 1") {
