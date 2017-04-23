@@ -173,6 +173,16 @@ class BloxorzSuite extends FunSuite {
     }
   }
 
+  test("newNeighborsOnly function, level1") {
+    new Level1 {
+      val rightBlock = Block(Pos(1, 2), Pos(1, 3))
+      val downBlock = Block(Pos(2, 1), Pos(3, 1))
+      val neighbors = List((rightBlock, List(Right)), (downBlock, List(Down))) toStream
+      val expected = List((rightBlock, List(Right)))
+      assert(newNeighborsOnly(neighbors, Set(downBlock)) == expected, "level 1, startBlock newNeighborsOnly")
+    }
+  }
+
 
 
   test("optimal solution for level 1") {
