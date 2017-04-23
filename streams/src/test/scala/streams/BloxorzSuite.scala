@@ -78,7 +78,7 @@ class BloxorzSuite extends FunSuite {
     }
   }
 
-  test("is standing level 1") {
+  test("block.isStanding function, level1") {
     new Level1 {
       val p0 = Pos(0, 0)
       val p1 = Pos(0, 1)
@@ -86,6 +86,27 @@ class BloxorzSuite extends FunSuite {
       val b1 = Block(p0, p1)
       assert(b0.isStanding, "0,0 - 0,0")
       assert(!b1.isStanding, "0,0 - 0,1")
+    }
+  }
+
+  test("block.isLegal function, level1") {
+    new Level1 {
+      val p0 = Pos(0, 0)
+      val p1 = Pos(0, 1)
+      val p2 = Pos(0, 2)
+      val p3 = Pos(0, 3)
+      val p4 = Pos(5, 8)
+      val p5 = Pos(5, 9)
+      val b0 = Block(p0, p0)
+      val b1 = Block(p0, p1)
+      val b2 = Block(p2, p3)
+      val b3 = Block(p3, p3)
+      val b4 = Block(p4, p5)
+      assert(b0.isLegal, "0,0 - 0,0")
+      assert(b1.isLegal, "0,0 - 0,1")
+      assert(!b2.isLegal, "0,2 - 0,3")
+      assert(!b3.isLegal, "0,3 - 0,3")
+      assert(!b4.isLegal, "5,8 - 5,9")
     }
   }
 
