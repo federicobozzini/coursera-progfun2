@@ -110,6 +110,14 @@ class BloxorzSuite extends FunSuite {
     }
   }
 
+  test("startBlock function, level1") {
+    new Level1 {
+      val p = Pos(1,1)
+      val b = Block(p, p)
+      assert(startBlock == b, "level 1 start block")
+    }
+  }
+
 	test("findChar level 1") {
     new Level1 {
       assert(startPos == Pos(1,1))
