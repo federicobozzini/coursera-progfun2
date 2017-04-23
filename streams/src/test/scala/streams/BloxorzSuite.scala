@@ -171,7 +171,7 @@ class BloxorzSuite extends FunSuite {
       val expected = List((rightBlock, List(Right)), (downBlock, List(Down)))
       assert(neighborsWithHistory(startBlock, List()) == expected, "level 1, startBlock neighborsWithHistory")
 
-      
+
       val suggestedBlock = Block(Pos(1,1),Pos(1,1))
       val suggestedHistory = List(Left,Up)
       val suggestedResult = Set(
@@ -202,6 +202,16 @@ class BloxorzSuite extends FunSuite {
 
       assert(newNeighborsOnly(suggestedNeighbors, suggestedExplored) == suggestedResult, "level 1, suggested example newNeighborsOnly")
 
+    }
+  }
+
+  test("from function for level 1") {
+    new Level1 {
+    val initial = List((startBlock, List())) toStream
+      val explored = Set[Block]()
+      val rightBlock = Block(Pos(1, 2), Pos(1, 3))
+      val firstResultExpected =  (rightBlock, List(Right))
+      assert(from(initial, explored).head == firstResultExpected, "level 1, from")
     }
   }
 
