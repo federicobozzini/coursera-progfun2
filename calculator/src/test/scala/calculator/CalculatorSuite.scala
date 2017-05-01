@@ -93,4 +93,43 @@ class CalculatorSuite extends FunSuite with ShouldMatchers {
   }
 
 
+  test ("calculator") {
+    def sigLit(v: Double):Signal[Expr] = Signal(Literal(v))
+    var a, b, c, d = sigLit(0)
+    def m = Calculator.computeValues(Map("a" -> a, "b"-> b, "c"-> c, "d"-> d))
+    assert(m("a")() == 0)
+
+    a = sigLit(2)
+
+    assert(m("a")() == 2)
+
+    b = sigLit(3)
+    assert(m("a")() == 2)
+    assert(m("b")() == 3)
+
+    c = sigLit(5)
+    assert(m("c")() == 5)
+
+    d = Signal(Minus(c(), b()))
+    assert(m("d")() == 2)
+
+    b = sigLit(6)
+    assert(m("b")() == 6)
+    assert(m("d")() == 2)
+
+    a = Signal(Ref("b"))
+    assert(m("a")() == 6)
+
+    a = Signal(Ref("e"))
+    assert(m("a")().isNaN)
+
+    a = Signal(Ref("a"))
+    assert(m("a")().isNaN)
+
+    a = Signal(Ref("b"))
+    b = Signal(Ref("a"))
+    assert(m("a")().isNaN)
+  }
+
+
 }
